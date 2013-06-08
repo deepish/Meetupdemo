@@ -33,13 +33,7 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 // force tables to update
 Alloy.Collections.Events.fetch();*/
 
-//Refence links
-//http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.ScrollableView-property-currentPage
-//http://stackoverflow.com/questions/16062363/titanium-alloy-accessing-ui-from-different-controllers
-//http://stackoverflow.com/questions/16831973/titanium-get-current-view-on-scrollableview-and-add-an-item
-function doOpen(){
-	alert("opening main");
-
+function fromMeetup(){
+	alert("i am in meetup");
 }
 
-$.win.open();

@@ -1,0 +1,9 @@
+<Alloy>
+	<Collection src="Events"/>
+	<View id="meetupview" backgroundColor="#123">
+    	<Label id="meetup">Meetup</Label>
+    	<TableView id="tableview" dataCollection="Events">
+			<Require src="EventRow"/>
+		</TableView>
+    </View>
+</Alloy>

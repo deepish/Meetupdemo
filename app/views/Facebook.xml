@@ -1,0 +1,5 @@
+<Alloy>
+	<View id="view3" backgroundColor="#48b">
+		<Label id="facebook">Facebook</Label>
+	</View>
+</Alloy>

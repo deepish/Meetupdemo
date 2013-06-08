@@ -1,0 +1,5 @@
+<Alloy>
+	<View id="view2" backgroundColor="#246">
+		<Label id="events">All Events</Label>
+	</View>
+</Alloy>
