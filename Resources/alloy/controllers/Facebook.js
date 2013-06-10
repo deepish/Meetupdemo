@@ -4,18 +4,24 @@ function Controller() {
     arguments[0] ? arguments[0]["$model"] : null;
     var $ = this;
     var exports = {};
-    $.__views.view3 = Ti.UI.createView({
-        id: "view3",
+    $.__views.facebookview = Ti.UI.createView({
+        id: "facebookview",
         backgroundColor: "#48b"
     });
-    $.__views.view3 && $.addTopLevelView($.__views.view3);
+    $.__views.facebookview && $.addTopLevelView($.__views.facebookview);
     $.__views.facebook = Ti.UI.createLabel({
         text: "Facebook",
         id: "facebook"
     });
-    $.__views.view3.add($.__views.facebook);
+    $.__views.facebookview.add($.__views.facebook);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.facebookview.addEventListener("myfocus", function() {
+        alert("facebook focus()");
+    });
+    $.facebookview.addEventListener("myblur", function() {
+        Ti.API.info("facebook blur()");
+    });
     _.extend($, exports);
 }
 

@@ -1,45 +1,34 @@
-/*
-Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
-//determine if the database needs to be seeded
-//if (!Ti.App.Properties.hasProperty('seeded')) {
 
-	// Use the HTTPClient object to send a GET request to 
-	// http://bountyhunterapp.appspot.com/bounties and process the returned data.
-	// It returns an array of objects in the form [{name: 'Jeff Haynie'}, ...]
-	var xhr = Titanium.Network.createHTTPClient();
-	xhr.onload = function() {
-		//alert("got ");
-		Ti.API.info('*****---------------------------------->got data from the network: ' + this.responseText);
-		var json = JSON.parse(this.responseText);
-		alert(json.results.length);
-		for(var i=0,j=json.results.length;i<j;i++) {
-			Ti.API.info('*****---------------------------------->got data from the network part 2: ' + json.results[i].name);
-			var event = Alloy.createModel('Events', { event_name: json.results[i].name });
-			event.save();
-		}
-		// set our app property so this code doesn't run next time
-	    Ti.App.Properties.setString('seeded', 'yuppers');
-		// force tables to update
-		Alloy.Collections.Events.fetch();
-	};
-	//xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&key=7407e82d507911451e5f721e23721e");
-	//xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=titanium&time=,1w&status=upcoming&city=pune&country=india&key=7407e82d507911451e5f721e23721e");
-	//xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&key=7407e82d507911451e5f721e23721e");
-	xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&page=3&offset=1&key=7407e82d507911451e5f721e23721e");
-	xhr.send();
-	
-
-//} 
-// force tables to update
-Alloy.Collections.Events.fetch();*/
-
-//Refence links
+//Refence links for calling function from index
 //http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.ScrollableView-property-currentPage
 //http://stackoverflow.com/questions/16062363/titanium-alloy-accessing-ui-from-different-controllers
 //http://stackoverflow.com/questions/16831973/titanium-get-current-view-on-scrollableview-and-add-an-item
-function doOpen(){
-	alert("opening main");
 
-}
+
+/*
+//To reach a table view use thsi
+var currentView=$.scrollableView.getCurrentPage();
+var viewArray=$.scrollableView.getViews();
+alert(currentView);
+viewArray[currentView].children[1].fromMeetup();*/
+
+
+//$.scrollableView.children[currentView].fromMeetup();
+//$.meetupview.fromMeetup();
+
+//var meetupController=Alloy.createController('Meetup');
+//meetupController.fromMeetup();
+
+$.scrollableView.addEventListener('scrollEnd', function(e){
+    if( !e.source.mainScroller || (e.source.lastPage == e.currentPage) ){
+      return;
+    }
+    //Fire blur action on view we have just exited
+    e.source.views[ e.source.lastPage ].fireEvent('myblur',{ 'scroller': e.source });
+    //Fire focus action on view we are entering
+    e.source.views[ e.currentPage ].fireEvent('myfocus',{ 'scroller': e.source });
+    //Change lastPage to currentPage
+    e.source.lastPage = e.currentPage;
+});
 
 $.win.open();

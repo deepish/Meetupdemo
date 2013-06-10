@@ -1,28 +1,21 @@
 function Controller() {
-    function doOpen() {
-        alert("opening main");
-        var viewArray = $.scrollableView.getViews();
-        viewArray[1].fromMeetup();
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
     var $ = this;
     var exports = {};
-    var __defers = {};
     $.__views.win = Ti.UI.createWindow({
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    doOpen ? $.__views.win.addEventListener("open", doOpen) : __defers["$.__views.win!open!doOpen"] = true;
     var __alloyId1 = [];
-    $.__views.__alloyId2 = Alloy.createController("Meetup", {
+    $.__views.__alloyId2 = Alloy.createController("AllEvents", {
         id: "__alloyId2"
     });
     __alloyId1.push($.__views.__alloyId2.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId3 = Alloy.createController("AllEvents", {
+    $.__views.__alloyId3 = Alloy.createController("Meetup", {
         id: "__alloyId3"
     });
     __alloyId1.push($.__views.__alloyId3.getViewEx({
@@ -37,13 +30,24 @@ function Controller() {
     $.__views.scrollableView = Ti.UI.createScrollableView({
         views: __alloyId1,
         id: "scrollableView",
-        showPagingControl: "true"
+        showPagingControl: "false",
+        mainScroller: "true",
+        lastPage: "0"
     });
     $.__views.win.add($.__views.scrollableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.scrollableView.addEventListener("scrollEnd", function(e) {
+        if (!e.source.mainScroller || e.source.lastPage == e.currentPage) return;
+        e.source.views[e.source.lastPage].fireEvent("myblur", {
+            scroller: e.source
+        });
+        e.source.views[e.currentPage].fireEvent("myfocus", {
+            scroller: e.source
+        });
+        e.source.lastPage = e.currentPage;
+    });
     $.win.open();
-    __defers["$.__views.win!open!doOpen"] && $.__views.win.addEventListener("open", doOpen);
     _.extend($, exports);
 }
 

@@ -1,5 +1,5 @@
 <Alloy>
-	<View id="view3" backgroundColor="#48b">
+	<View id="facebookview" backgroundColor="#48b">
 		<Label id="facebook">Facebook</Label>
 	</View>
 </Alloy>

@@ -41,6 +41,40 @@ function Controller() {
         __alloyId10.off("fetch destroy change add remove reset", __alloyId11);
     };
     _.extend($, $.__views);
+    $.meetupview.addEventListener("myfocus", function() {
+        Ti.API.info("seeded: " + Ti.App.Properties.hasProperty("seeded"));
+        var xhr = Titanium.Network.createHTTPClient();
+        xhr.onload = function() {
+            Ti.API.info("*****---------------------------------->got data from the network: " + this.responseText);
+            var json = JSON.parse(this.responseText);
+            alert(json.results.length);
+            for (var i = 0, j = json.results.length; j > i; i++) {
+                Ti.API.info("*****---------------------------------->got data from the network part 2: " + json.results[i].name);
+                var event = Alloy.createModel("Events", {
+                    id: json.results[i].id,
+                    event_name: json.results[i].name,
+                    status: json.results[i].status,
+                    time: json.results[i].time,
+                    event_url: json.results[i].event_url,
+                    description: json.results[i].description,
+                    group_id: json.results[i].group.id,
+                    group_lat: json.results[i].group.group_lat,
+                    group_lon: json.results[i].group.group_lon,
+                    group_name: json.results[i].group.name,
+                    urlname: json.results[i].group.urlname
+                });
+                event.save();
+            }
+            Ti.App.Properties.setString("seeded", "yuppers");
+            Alloy.Collections.Events.fetch();
+        };
+        xhr.open("GET", "https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&page=3&offset=1&key=7407e82d507911451e5f721e23721e");
+        xhr.send();
+        Alloy.Collections.Events.fetch();
+    });
+    $.meetupview.addEventListener("myblur", function() {
+        Ti.API.info("meetup blur()");
+    });
     _.extend($, exports);
 }
 

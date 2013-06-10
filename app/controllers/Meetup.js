@@ -1,4 +1,5 @@
-/*
+$.meetupview.addEventListener('myfocus', function( e ){
+
 Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 //determine if the database needs to be seeded
 //if (!Ti.App.Properties.hasProperty('seeded')) {
@@ -14,7 +15,19 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 		alert(json.results.length);
 		for(var i=0,j=json.results.length;i<j;i++) {
 			Ti.API.info('*****---------------------------------->got data from the network part 2: ' + json.results[i].name);
-			var event = Alloy.createModel('Events', { event_name: json.results[i].name });
+			var event = Alloy.createModel('Events', { 
+					id:json.results[i].id, 
+					event_name: json.results[i].name,
+					status: json.results[i].status,
+				   	time: json.results[i].time,
+				   	event_url: json.results[i].event_url,
+				    description: json.results[i].description,
+				    group_id: json.results[i].group.id,
+				    group_lat: json.results[i].group.group_lat,
+				    group_lon: json.results[i].group.group_lon,
+				    group_name: json.results[i].group.name,
+				    urlname: json.results[i].group.urlname
+				});
 			event.save();
 		}
 		// set our app property so this code doesn't run next time
@@ -28,12 +41,12 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 	xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&page=3&offset=1&key=7407e82d507911451e5f721e23721e");
 	xhr.send();
 	
-
 //} 
 // force tables to update
-Alloy.Collections.Events.fetch();*/
+Alloy.Collections.Events.fetch();
+});
 
-function fromMeetup(){
-	alert("i am in meetup");
-}
-
+$.meetupview.addEventListener('myblur', function( e ){
+  //The view has just been blurred
+  Ti.API.info('meetup blur()');
+});

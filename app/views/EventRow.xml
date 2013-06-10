@@ -2,7 +2,16 @@
 	<TableViewRow id="row" model="{alloy_id}">
 		<View class="vgroup">
 			<Label id="event_name" text="{event_name}"/>
+			<Label id="id" text="{id}"/>
+			<Label id="status" text="{status}"/>
+			<Label id="time" text="{time}"/>
+			<Label id="event_url" text="{event_url}"/>
+			<Label id="description" text="{description}"/>
+			<Label id="group_id" text="{group_id}"/>
+			<Label id="group_lat" text="{group_lat}"/>
+			<Label id="group_name" text="{group_name}"/>
 			
+			 
 		</View>
 	</TableViewRow>
 </Alloy>

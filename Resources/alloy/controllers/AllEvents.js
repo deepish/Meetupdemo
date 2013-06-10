@@ -4,18 +4,24 @@ function Controller() {
     arguments[0] ? arguments[0]["$model"] : null;
     var $ = this;
     var exports = {};
-    $.__views.view2 = Ti.UI.createView({
-        id: "view2",
+    $.__views.allevents = Ti.UI.createView({
+        id: "allevents",
         backgroundColor: "#246"
     });
-    $.__views.view2 && $.addTopLevelView($.__views.view2);
+    $.__views.allevents && $.addTopLevelView($.__views.allevents);
     $.__views.events = Ti.UI.createLabel({
         text: "All Events",
         id: "events"
     });
-    $.__views.view2.add($.__views.events);
+    $.__views.allevents.add($.__views.events);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.allevents.addEventListener("myfocus", function() {
+        alert("All events focus()");
+    });
+    $.allevents.addEventListener("myblur", function() {
+        Ti.API.info("all events blur()");
+    });
     _.extend($, exports);
 }
 
