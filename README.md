@@ -12,3 +12,6 @@ Networks to be integrated:
 3. headstart.in
 4. http://www.meraevents.com/
 5. Eventbrite
+
+
+Native calender should be integrated with the app
