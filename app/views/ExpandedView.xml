@@ -1,5 +1,6 @@
 <Alloy>
 	<Window id="detailswin" title="New window" modal="true"  opacity=1 zIndex=100 backgroundColor='#FFFFFF'>
+		
 		<Label id="event_name"/>
 		<Label id="time"/>
 		<Label id="id"/>
