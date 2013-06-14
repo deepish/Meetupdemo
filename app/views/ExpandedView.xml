@@ -1,0 +1,17 @@
+<Alloy>
+	<Window id="detailswin" title="New window" modal="true"  opacity=1 zIndex=100 backgroundColor='#FFFFFF'>
+		<Label id="event_name"/>
+		<Label id="time"/>
+		<Label id="id"/>
+		<Label id="status"/>
+		<Label id="event_url"/>
+		<Label id="description"/>
+		<Label id="group_id"/>
+		<Label id="group_lat"/>
+		<Label id="group_lon"/>
+		<Label id="group_name"/>
+		<Label id="urlname"/>
+		
+	</Window>
+		
+</Alloy>

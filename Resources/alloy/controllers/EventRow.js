@@ -30,24 +30,6 @@ function Controller() {
         text: "undefined" != typeof $model.__transform["event_name"] ? $model.__transform["event_name"] : $model.get("event_name")
     });
     $.__views.__alloyId0.add($.__views.event_name);
-    $.__views.id = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "id",
-        text: "undefined" != typeof $model.__transform["id"] ? $model.__transform["id"] : $model.get("id")
-    });
-    $.__views.__alloyId0.add($.__views.id);
-    $.__views.status = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "status",
-        text: "undefined" != typeof $model.__transform["status"] ? $model.__transform["status"] : $model.get("status")
-    });
-    $.__views.__alloyId0.add($.__views.status);
     $.__views.time = Ti.UI.createLabel({
         color: "#000",
         font: {
@@ -57,53 +39,25 @@ function Controller() {
         text: "undefined" != typeof $model.__transform["time"] ? $model.__transform["time"] : $model.get("time")
     });
     $.__views.__alloyId0.add($.__views.time);
-    $.__views.event_url = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "event_url",
-        text: "undefined" != typeof $model.__transform["event_url"] ? $model.__transform["event_url"] : $model.get("event_url")
-    });
-    $.__views.__alloyId0.add($.__views.event_url);
-    $.__views.description = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "description",
-        text: "undefined" != typeof $model.__transform["description"] ? $model.__transform["description"] : $model.get("description")
-    });
-    $.__views.__alloyId0.add($.__views.description);
-    $.__views.group_id = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "group_id",
-        text: "undefined" != typeof $model.__transform["group_id"] ? $model.__transform["group_id"] : $model.get("group_id")
-    });
-    $.__views.__alloyId0.add($.__views.group_id);
-    $.__views.group_lat = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "group_lat",
-        text: "undefined" != typeof $model.__transform["group_lat"] ? $model.__transform["group_lat"] : $model.get("group_lat")
-    });
-    $.__views.__alloyId0.add($.__views.group_lat);
-    $.__views.group_name = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "16dp"
-        },
-        id: "group_name",
-        text: "undefined" != typeof $model.__transform["group_name"] ? $model.__transform["group_name"] : $model.get("group_name")
-    });
-    $.__views.__alloyId0.add($.__views.group_name);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.row.addEventListener("click", function() {
+        var expandedview = Alloy.createController("ExpandedView");
+        expandedview.getView().open();
+        Ti.App.fireEvent("details", {
+            name: $model.get("name"),
+            id: $model.get("id"),
+            status: $model.get("status"),
+            time: $model.get("time"),
+            event_url: $model.get("event_url"),
+            description: $model.get("description"),
+            group_id: $model.get("group_id"),
+            group_lat: $model.get("group_lat"),
+            group_lon: $model.get("group_lon"),
+            group_name: $model.get("group_name"),
+            urlname: $model.get("urlname")
+        });
+    });
     _.extend($, exports);
 }
 
