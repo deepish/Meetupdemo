@@ -1,3 +1,57 @@
 ".container": {
-	backgroundColor: "white"
+	backgroundColor:"white"
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+} 
+
+"#tabBar": {
+	width: Ti.UI.SIZE,
+	height: "15%",
+	left: "0",
+	top: "0"
+}
+
+"#tab1": {
+	width: Alloy.CFG.width,
+	height: Ti.UI.SIZE,
+	left: "2",
+	top: "0"
+}
+
+"#tab2": {
+	width: Alloy.CFG.width,
+	height: Ti.UI.SIZE,
+	left: Alloy.CFG.lefttab2,
+	top: "0"
+}
+
+"#tab3": {
+	width: Alloy.CFG.width,
+	height: Ti.UI.SIZE,
+	left: Alloy.CFG.lefttab3,
+	top: "0"
+}
+
+"#tab4": {
+	width: Alloy.CFG.width,
+	height: Ti.UI.SIZE,
+	left: Alloy.CFG.lefttab4,
+	top: "0"
+}
+
+"#event_name": {
+	top: "20%",
+	right: "5"
+}
+
+"#group_name": {
+	top: "30%",
+	right: "5"
+}
+
+"#description": {
+	top: "35%"
 }

@@ -1,14 +1,10 @@
 $.row.addEventListener('click',function(e){
-	var args = [];
-	//args.push({name:'ABCD',value:'1234'});
-	//var expandedview = Alloy.createController('ExpandedView', args);
-	var expandedview = Alloy.createController('ExpandedView');
+
+
+ 	var expandedview = Alloy.createController('ExpandedView');
 	expandedview.getView().open();
-	//alert($model.get('status'));
 	
-	//expandedview.fireEvent('details', { name:'bar' });
-	
-	Ti.App.fireEvent('details', { 	name : $model.get('name'),
+	Ti.App.fireEvent('details', { 	event_name : $model.get('event_name'),
 									id : $model.get('id'),
 									status : $model.get('status'),
 									time : $model.get('time'),
@@ -19,5 +15,6 @@ $.row.addEventListener('click',function(e){
 									group_lon : $model.get('group_lon'),
 									group_name : $model.get('group_name'),
 									urlname : $model.get('urlname') });
-	
+
+
 });

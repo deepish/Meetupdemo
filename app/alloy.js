@@ -9,3 +9,9 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
+var spacer = Math.round(Ti.Platform.displayCaps.platformWidth*0.25);
+Alloy.CFG.width=spacer-4;
+Alloy.CFG.lefttab2=spacer;
+Alloy.CFG.lefttab3=spacer*2;
+Alloy.CFG.lefttab4=spacer*3;

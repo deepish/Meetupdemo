@@ -32,3 +32,14 @@ $.scrollableView.addEventListener('scrollEnd', function(e){
 });
 
 $.win.open();
+
+/*
+
+var longi;
+var lat;
+Titanium.Geolocation.getCurrentPosition(function(e){
+        longi = e.coords.longitude;
+        lat = e.coords.latitude;
+      }*/
+
+       

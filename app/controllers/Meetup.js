@@ -9,7 +9,6 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 	// It returns an array of objects in the form [{name: 'Jeff Haynie'}, ...]
 	var xhr = Titanium.Network.createHTTPClient();
 	xhr.onload = function() {
-		//alert("got ");
 		Ti.API.info('*****---------------------------------->got data from the network: ' + this.responseText);
 		var json = JSON.parse(this.responseText);
 		alert(json.results.length);
@@ -33,7 +32,7 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 		// set our app property so this code doesn't run next time
 	    Ti.App.Properties.setString('seeded', 'yuppers');
 		// force tables to update
-		Alloy.Collections.Events.fetch();
+		//Alloy.Collections.Events.fetch();
 	};
 	//xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&key=7407e82d507911451e5f721e23721e");
 	//xhr.open("GET","https://api.meetup.com/2/open_events.json?topic=titanium&time=,1w&status=upcoming&city=pune&country=india&key=7407e82d507911451e5f721e23721e");
@@ -43,8 +42,43 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 	
 //} 
 // force tables to update
-Alloy.Collections.Events.fetch();
+//Alloy.Collections.Events.fetch();
+var events=Alloy.Collections.instance('Events');
+events.fetch();
+//Trigger an evenet with passing the reference for the complete collection object
+//Ti.App.fireEvent('fetchcomplete',events);
+//Function call to update the images
+updateImages(events);
+
 });
+
+//Ti.App.addEventListener('fetchcomplete', function(e) {
+function updateImages(e){
+	//alert(e.models.length);
+	for (var i = 0; i < e.models.length; i++) {
+        var model = e.models[i];
+        Ti.API.info(" events..." + JSON.stringify(model));
+        var group_id = model.get('group_id');
+        Ti.API.info(" ---------------->>The id is..." + group_id);
+        
+        //Call the network and get the photo of the group
+        var xhr = Titanium.Network.createHTTPClient();
+        xhr.onload = function() {
+	        Ti.API.info('*****---------------------------------->got data from the network: ' + this.responseText);
+			var json = JSON.parse(this.responseText);
+        		for(var i=0,j=json.results.length;i<j;i++) {
+					Ti.API.info('*****---------------------------------->got data from the network part 2: ' + json.results[i].photo_link);
+					model.set('urlname',json.results[i].photo_link);
+				}
+			
+			e.fetch();
+        }
+        xhr.open("GET","https://api.meetup.com/2/photos?&sign=true&group_id=8861722&page=2&key=7407e82d507911451e5f721e23721e");
+		xhr.send();
+	}
+};
+
+
 
 $.meetupview.addEventListener('myblur', function( e ){
   //The view has just been blurred

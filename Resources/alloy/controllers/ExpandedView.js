@@ -8,60 +8,112 @@ function Controller() {
         id: "detailswin",
         title: "New window",
         modal: "true",
-        opacity: "1",
-        zIndex: "100",
         backgroundColor: "#FFFFFF"
     });
     $.__views.detailswin && $.addTopLevelView($.__views.detailswin);
+    $.__views.tabBar = Ti.UI.createView({
+        width: Ti.UI.SIZE,
+        height: "15%",
+        left: "0",
+        top: "0",
+        id: "tabBar"
+    });
+    $.__views.detailswin.add($.__views.tabBar);
+    $.__views.tab1 = Ti.UI.createView({
+        width: Alloy.CFG.width,
+        height: Ti.UI.SIZE,
+        left: "2",
+        top: "0",
+        id: "tab1"
+    });
+    $.__views.tabBar.add($.__views.tab1);
+    $.__views.__alloyId1 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "tab1",
+        id: "__alloyId1"
+    });
+    $.__views.tab1.add($.__views.__alloyId1);
+    $.__views.tab2 = Ti.UI.createView({
+        width: Alloy.CFG.width,
+        height: Ti.UI.SIZE,
+        left: Alloy.CFG.lefttab2,
+        top: "0",
+        id: "tab2"
+    });
+    $.__views.tabBar.add($.__views.tab2);
+    $.__views.__alloyId2 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "tab2",
+        id: "__alloyId2"
+    });
+    $.__views.tab2.add($.__views.__alloyId2);
+    $.__views.tab3 = Ti.UI.createView({
+        width: Alloy.CFG.width,
+        height: Ti.UI.SIZE,
+        left: Alloy.CFG.lefttab3,
+        top: "0",
+        id: "tab3"
+    });
+    $.__views.tabBar.add($.__views.tab3);
+    $.__views.__alloyId3 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "tab3",
+        id: "__alloyId3"
+    });
+    $.__views.tab3.add($.__views.__alloyId3);
+    $.__views.tab4 = Ti.UI.createView({
+        width: Alloy.CFG.width,
+        height: Ti.UI.SIZE,
+        left: Alloy.CFG.lefttab4,
+        top: "0",
+        id: "tab4"
+    });
+    $.__views.tabBar.add($.__views.tab4);
+    $.__views.__alloyId4 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "tab4",
+        id: "__alloyId4"
+    });
+    $.__views.tab4.add($.__views.__alloyId4);
     $.__views.event_name = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        top: "20%",
+        right: "5",
         id: "event_name"
     });
     $.__views.detailswin.add($.__views.event_name);
-    $.__views.time = Ti.UI.createLabel({
-        id: "time"
-    });
-    $.__views.detailswin.add($.__views.time);
-    $.__views.id = Ti.UI.createLabel({
-        id: "id"
-    });
-    $.__views.detailswin.add($.__views.id);
-    $.__views.status = Ti.UI.createLabel({
-        id: "status"
-    });
-    $.__views.detailswin.add($.__views.status);
-    $.__views.event_url = Ti.UI.createLabel({
-        id: "event_url"
-    });
-    $.__views.detailswin.add($.__views.event_url);
-    $.__views.description = Ti.UI.createLabel({
-        id: "description"
-    });
-    $.__views.detailswin.add($.__views.description);
-    $.__views.group_id = Ti.UI.createLabel({
-        id: "group_id"
-    });
-    $.__views.detailswin.add($.__views.group_id);
-    $.__views.group_lat = Ti.UI.createLabel({
-        id: "group_lat"
-    });
-    $.__views.detailswin.add($.__views.group_lat);
-    $.__views.group_lon = Ti.UI.createLabel({
-        id: "group_lon"
-    });
-    $.__views.detailswin.add($.__views.group_lon);
     $.__views.group_name = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        top: "30%",
+        right: "5",
         id: "group_name"
     });
     $.__views.detailswin.add($.__views.group_name);
-    $.__views.urlname = Ti.UI.createLabel({
-        id: "urlname"
+    $.__views.description = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        top: "35%",
+        id: "description"
     });
-    $.__views.detailswin.add($.__views.urlname);
+    $.__views.detailswin.add($.__views.description);
     exports.destroy = function() {};
     _.extend($, $.__views);
     Ti.App.addEventListener("details", function(e) {
         Ti.API.info("==============================================================Event listning");
-        Ti.API.info("==============================================================" + e.name);
+        Ti.API.info("==============================================================" + e.event_name);
         Ti.API.info("==============================================================" + e.id);
         Ti.API.info("==============================================================" + e.status);
         Ti.API.info("==============================================================" + e.time);
@@ -72,17 +124,9 @@ function Controller() {
         Ti.API.info("==============================================================" + e.group_lon);
         Ti.API.info("==============================================================" + e.group_name);
         Ti.API.info("==============================================================" + e.urlname);
-        $.event_name.setText(e.name);
-        $.time.setText(e.time);
-        $.id.setText(e.id);
-        $.status.setText(e.status);
-        $.event_url.setText(e.event_url);
-        $.description.setText(e.description);
-        $.group_id.setText(e.group_id);
-        $.group_lat.setText(e.group_lat);
-        $.group_lon.setText(e.group_lon);
+        $.event_name.setText(e.event_name);
         $.group_name.setText(e.group_name);
-        $.urlname.setText(e.urlname);
+        $.description.setHtml(e.description);
     });
     _.extend($, exports);
 }

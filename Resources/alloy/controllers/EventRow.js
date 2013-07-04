@@ -45,7 +45,7 @@ function Controller() {
         var expandedview = Alloy.createController("ExpandedView");
         expandedview.getView().open();
         Ti.App.fireEvent("details", {
-            name: $model.get("name"),
+            event_name: $model.get("event_name"),
             id: $model.get("id"),
             status: $model.get("status"),
             time: $model.get("time"),

@@ -8,27 +8,27 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    var __alloyId1 = [];
-    $.__views.__alloyId2 = Alloy.createController("AllEvents", {
-        id: "__alloyId2"
+    var __alloyId5 = [];
+    $.__views.__alloyId6 = Alloy.createController("AllEvents", {
+        id: "__alloyId6"
     });
-    __alloyId1.push($.__views.__alloyId2.getViewEx({
+    __alloyId5.push($.__views.__alloyId6.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId3 = Alloy.createController("Meetup", {
-        id: "__alloyId3"
+    $.__views.__alloyId7 = Alloy.createController("Meetup", {
+        id: "__alloyId7"
     });
-    __alloyId1.push($.__views.__alloyId3.getViewEx({
+    __alloyId5.push($.__views.__alloyId7.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId4 = Alloy.createController("Facebook", {
-        id: "__alloyId4"
+    $.__views.__alloyId8 = Alloy.createController("Facebook", {
+        id: "__alloyId8"
     });
-    __alloyId1.push($.__views.__alloyId4.getViewEx({
+    __alloyId5.push($.__views.__alloyId8.getViewEx({
         recurse: true
     }));
     $.__views.scrollableView = Ti.UI.createScrollableView({
-        views: __alloyId1,
+        views: __alloyId5,
         id: "scrollableView",
         showPagingControl: "false",
         mainScroller: "true",

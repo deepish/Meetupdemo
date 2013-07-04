@@ -2,7 +2,7 @@
 Ti.App.addEventListener('details' , function( e ){
 	Ti.API.info("==============================================================Event listning");
 
-	Ti.API.info("==============================================================" + e.name);
+	Ti.API.info("==============================================================" + e.event_name);
 Ti.API.info("==============================================================" + e.id);
 Ti.API.info("==============================================================" + e.status);
 Ti.API.info("==============================================================" + e.time);
@@ -14,17 +14,22 @@ Ti.API.info("==============================================================" + e
 Ti.API.info("==============================================================" + e.group_name);
 Ti.API.info("==============================================================" + e.urlname);
 
-	$.event_name.setText(e.name);
-	$.time.setText(e.time);
-	$.id.setText(e.id);
-	$.status.setText(e.status);
-	$.event_url.setText(e.event_url);
-	$.description.setText(e.description);
-	$.group_id.setText(e.group_id);
-	$.group_lat.setText(e.group_lat);
-	$.group_lon.setText(e.group_lon);
+	$.event_name.setText(e.event_name);
 	$.group_name.setText(e.group_name);
-	$.urlname.setText(e.urlname);
+	$.description.setHtml(e.description);
+	
+	/*
+	$.time.setText(e.time);
+		$.id.setText(e.id);
+		$.status.setText(e.status);
+		$.event_url.setText(e.event_url);
+		
+		$.group_id.setText(e.group_id);
+		$.group_lat.setText(e.group_lat);
+		$.group_lon.setText(e.group_lon);
+		
+		$.urlname.setText(e.urlname);*/
+	
 });
 
 

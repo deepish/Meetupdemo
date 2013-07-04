@@ -1,19 +1,39 @@
 function Controller() {
-    function __alloyId11() {
-        var models = __alloyId10.models;
+    function __alloyId15() {
+        var models = __alloyId14.models;
         var len = models.length;
         var rows = [];
         for (var i = 0; len > i; i++) {
-            var __alloyId8 = models[i];
-            __alloyId8.__transform = {};
-            var __alloyId9 = Alloy.createController("EventRow", {
-                $model: __alloyId8
+            var __alloyId12 = models[i];
+            __alloyId12.__transform = {};
+            var __alloyId13 = Alloy.createController("EventRow", {
+                $model: __alloyId12
             });
-            rows.push(__alloyId9.getViewEx({
+            rows.push(__alloyId13.getViewEx({
                 recurse: true
             }));
         }
         $.__views.tableview.setData(rows);
+    }
+    function updateImages(e) {
+        for (var i = 0; e.models.length > i; i++) {
+            var model = e.models[i];
+            Ti.API.info(" events..." + JSON.stringify(model));
+            var group_id = model.get("group_id");
+            Ti.API.info(" ---------------->>The id is..." + group_id);
+            var xhr = Titanium.Network.createHTTPClient();
+            xhr.onload = function() {
+                Ti.API.info("*****---------------------------------->got data from the network: " + this.responseText);
+                var json = JSON.parse(this.responseText);
+                for (var i = 0, j = json.results.length; j > i; i++) {
+                    Ti.API.info("*****---------------------------------->got data from the network part 2: " + json.results[i].photo_link);
+                    model.set("urlname", json.results[i].photo_link);
+                }
+                e.fetch();
+            };
+            xhr.open("GET", "https://api.meetup.com/2/photos?&sign=true&group_id=8861722&page=2&key=7407e82d507911451e5f721e23721e");
+            xhr.send();
+        }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -35,10 +55,10 @@ function Controller() {
         id: "tableview"
     });
     $.__views.meetupview.add($.__views.tableview);
-    var __alloyId10 = Alloy.Collections["Events"] || Events;
-    __alloyId10.on("fetch destroy change add remove reset", __alloyId11);
+    var __alloyId14 = Alloy.Collections["Events"] || Events;
+    __alloyId14.on("fetch destroy change add remove reset", __alloyId15);
     exports.destroy = function() {
-        __alloyId10.off("fetch destroy change add remove reset", __alloyId11);
+        __alloyId14.off("fetch destroy change add remove reset", __alloyId15);
     };
     _.extend($, $.__views);
     $.meetupview.addEventListener("myfocus", function() {
@@ -66,11 +86,12 @@ function Controller() {
                 event.save();
             }
             Ti.App.Properties.setString("seeded", "yuppers");
-            Alloy.Collections.Events.fetch();
         };
         xhr.open("GET", "https://api.meetup.com/2/open_events.json?topic=photo&time=,1w&page=3&offset=1&key=7407e82d507911451e5f721e23721e");
         xhr.send();
-        Alloy.Collections.Events.fetch();
+        var events = Alloy.Collections.instance("Events");
+        events.fetch();
+        updateImages(events);
     });
     $.meetupview.addEventListener("myblur", function() {
         Ti.API.info("meetup blur()");

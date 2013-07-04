@@ -1,17 +1,35 @@
 <Alloy>
-	<Window id="detailswin" title="New window" modal="true"  opacity=1 zIndex=100 backgroundColor='#FFFFFF'>
-		
+	<Window id="detailswin" title="New window" modal="true" backgroundColor='#FFFFFF'>
+		<View id="tabBar">
+	       	<View id="tab1">
+	       		<Label text="tab1"/>
+	       	</View>
+	       	<View id="tab2">
+	       		<Label text="tab2"/>
+	       	</View>
+	       	<View id="tab3">
+	       		<Label text="tab3"/>
+	       	</View>
+	       	<View id="tab4">
+	       		<Label text="tab4"/>
+	       	</View>
+        </View>
 		<Label id="event_name"/>
-		<Label id="time"/>
-		<Label id="id"/>
-		<Label id="status"/>
-		<Label id="event_url"/>
-		<Label id="description"/>
-		<Label id="group_id"/>
-		<Label id="group_lat"/>
-		<Label id="group_lon"/>
 		<Label id="group_name"/>
-		<Label id="urlname"/>
+		<Label id="description"/>
+		
+		<!--
+		<Label id="time"/>
+				<Label id="id"/>
+				<Label id="status"/>
+				<Label id="event_url"/>
+				
+				<Label id="group_id"/>
+				<Label id="group_lat"/>
+				<Label id="group_lon"/>
+				
+				<Label id="urlname"/>-->
+		
 		
 	</Window>
 		
