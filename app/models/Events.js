@@ -11,7 +11,7 @@ exports.definition = {
 		    "group_lat": "double",
 		    "group_lon": "double",
 		    "group_name": "string",
-		    "urlname": "string"
+		    "urlname": "text"
 		},
 		adapter: {
 			type: "sql",

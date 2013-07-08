@@ -1,6 +1,7 @@
 <Alloy>
 	<TableViewRow id="row" model="{alloy_id}">
 		<View class="vgroup">
+			<ImageView id="imagemeetup" image="{urlname}">
 			<Label id="event_name" text="{event_name}"/>
 			<Label id="time" text="{time}"/>
 			
