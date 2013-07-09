@@ -1,7 +1,6 @@
 <Alloy>
 	<Collection src="Events"/>
-	<View id="meetupview" backgroundColor="#123">
-    	<Label id="meetup">Meetup</Label>
+	<View id="meetupview" backgroundColor="#000">
     	<TableView id="tableview" dataCollection="Events">
 			<Require src="EventRow"/>
 		</TableView>

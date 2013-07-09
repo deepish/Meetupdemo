@@ -1,8 +1,8 @@
 <Alloy>
     <Window id="win">
         <ScrollableView id="scrollableView" showPagingControl="false" mainScroller="true" lastPage="0">
+        	<Require src="Meetup">
             <Require src="AllEvents">
-            <Require src="Meetup">
             <Require src="Facebook">
         </ScrollableView>
     </Window>

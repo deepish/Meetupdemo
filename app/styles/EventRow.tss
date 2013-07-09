@@ -1,5 +1,5 @@
 "Label": {
-	color: "#000",
+	color: "#fff",
 	font: {
 		fontSize: "16dp"
 	}
@@ -15,8 +15,8 @@
 "#event_name": {
 	top: "2dp",
 	height: Ti.UI.SIZE,
-	left: "45dp",
-	right: "5dp",
+	left: "30%",
+	right: "5%",
 	font: {
 		fontSize: "20dp"
 	},
@@ -24,6 +24,11 @@
 },
 "#imagemeetup":{
 	height: Ti.UI.SIZE,
-	width: "35dp",
-	left: "5dp"
+	width: "25%",
+	left: "2%"
+},
+"#time":{	
+	left: "30%",
+	right: "5%"
+
 }

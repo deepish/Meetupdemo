@@ -18,7 +18,7 @@ viewArray[currentView].children[1].fromMeetup();*/
 
 //var meetupController=Alloy.createController('Meetup');
 //meetupController.fromMeetup();
-
+var meetup = Alloy.createController('Meetup').getView().fireEvent('myfocus',{ 'scroller': 'e.source' });
 $.scrollableView.addEventListener('scrollEnd', function(e){
     if( !e.source.mainScroller || (e.source.lastPage == e.currentPage) ){
       return;

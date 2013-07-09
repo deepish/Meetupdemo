@@ -14,11 +14,12 @@ Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 		alert(json.results.length);
 		for(var i=0,j=json.results.length;i<j;i++) {
 			Ti.API.info('*****---------------------------------->got data from the network part 2: ' + json.results[i].name);
+			var date = new Date(json.results[i].updated);
 			var event = Alloy.createModel('Events', { 
 					id:json.results[i].id, 
 					event_name: json.results[i].name,
 					status: json.results[i].status,
-				   	time: json.results[i].time,
+				   	time: date,
 				   	event_url: json.results[i].event_url,
 				    description: json.results[i].description,
 				    group_id: json.results[i].group.id,
